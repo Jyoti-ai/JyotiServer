@@ -38,6 +38,15 @@ app.get('/quiz.json', (request, response) => {
     });
 });
 
+
+app.get('/quiz-cached', (request, response) => {
+    response.set('Cache-Control', 'public, max-age=300, s-maxage=600');
+    getJSON().then(data => {
+      response.json(data);
+    });
+});
+
+
 app.get('/open-website', (request, response) => {
   response.redirect('https://jyotiserver.firebaseapp.com');
 });
